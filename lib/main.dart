@@ -1,8 +1,26 @@
+ import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:raftlabs_assignment/navigation.dart';
+import 'package:raftlabs_assignment/providers/state_provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(
+      MultiProvider(providers: [
+        ChangeNotifierProvider(create: (context) => StateProvider()),
+      ],
+          child: MyApp())
+  );
+}
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
 }
 
 class MyApp extends StatelessWidget {

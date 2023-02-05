@@ -3,6 +3,7 @@ import 'package:raftlabs_assignment/screens/HomeScreen.dart';
 import 'package:raftlabs_assignment/screens/web_view.dart';
 import 'package:raftlabs_assignment/screens/welcome_screen.dart';
 
+
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
 
@@ -22,9 +23,12 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
+        backgroundColor: Colors.deepOrangeAccent.shade100,
         body: pages[pageIndex],
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.purple.shade400,
+          backgroundColor: Colors.deepOrange.shade100,
+          unselectedItemColor: Colors.blueGrey,
+          selectedItemColor: Colors.deepOrange,
           currentIndex: pageIndex,
           items:  const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
