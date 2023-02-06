@@ -32,18 +32,21 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           body:Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children:  [
-               const Center(
-                 child: Text(
-                  'Hello Friend!',
-                   style: TextStyle(fontSize: 54, fontWeight: FontWeight.bold),
+               Padding(
+                 padding: const EdgeInsets.only(bottom: 20.0),
+                 child: const Center(
+                   child: Text(
+                    'Hello Friend!',
+                     style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
               ),
+                 ),
                ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 400,
+                height:  MediaQuery.of(context).size.width/1.4,
                 child: FadeInImage(
                   image: NetworkImage("https://media.giphy.com/media/Vbtc9VG51NtzT1Qnv1/giphy.gif"),
                   placeholder: AssetImage(
@@ -59,16 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
               ),
               Padding(
-                padding: const EdgeInsets.all(22.0),
+                padding: const EdgeInsets.only(top: 30.0),
                 child: SizedBox(
-                  width: 200,
-                  height: 100,
+                  width: 160,
+                  height: 60,
                   child: ElevatedButton(
-                    onPressed: ()async{
+                    onPressed: (){
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const ApiCalledPage()));
-                      setState(() {
-                        apiCalled = true;
-                      });
                     },
                     child: Text(
                       'Fetch Data',
@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+
             ],
           ),
       ),

@@ -13,11 +13,6 @@ class ApiCalledPage extends StatefulWidget {
 class _ApiCalledPageState extends State<ApiCalledPage> {
   TextEditingController search = TextEditingController();
 
-  @override
-  initState(){
-    super.initState();
-
-  }
   textEdited(String title, String text, var color, double size){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),

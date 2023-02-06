@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../models/models.dart';
 
@@ -31,7 +30,7 @@ class _WebViewState extends State<WebView> {
               ),
             ),
           ),
-          body: Padding(
+          body: Container(
             padding: const EdgeInsets.only(top: 50.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,12 +43,9 @@ class _WebViewState extends State<WebView> {
                 ),
 
                 Container(
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.only(top: 0, left: 10),
-                    child: Text('''
-My name is Rushikesh Prakash Kumbhar from Kolhapur, Maharashtra, pursuing Mechanical Engineering at the Government College of Engineering and Research, Awasari Khu., Pune, Maharashtra. I was actively looking for a flutter developer role, and got to know about this amazing opportunity, I always wanted to work in the company like Raftlabs where in I could follow my passion for coding, have amazing learning and development experience.
-
-please click on the below links to see my portfolio in Webview.''',
+                    child: Text('please click on the below links to see my portfolio in Webview.',
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
