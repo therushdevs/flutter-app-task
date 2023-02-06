@@ -1,5 +1,7 @@
 # raftlabs_assignment
-This is a flutter application built as an assignment for an organization. This app contains data from the internet using API's, realtime clock and internet connectivity status. Also I've used webView using url_launcher to open the linke in the application. 
+This is a flutter application built as an assignment for an organization. This app contains data from the internet using API's, realtime clock and internet connectivity status. Also I've used webView using url_launcher to open the linke in the application.
+
+Click on the link to understand the codebase in detail: https://www.loom.com/share/fd719e41c69d4c7d8f040c6afa547d44 
 
 https://user-images.githubusercontent.com/51785772/216992963-312529ae-c93b-4cc8-bfc1-0484ed406c80.mp4
 ## Getting Started
