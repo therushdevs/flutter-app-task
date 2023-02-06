@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 
 import '../constants.dart';
@@ -18,6 +19,18 @@ Future<dynamic> homeApiCall() async{
     }
   }catch(error){
     print('Error: ${error.toString()}');
+  }
+}
+
+void openWebView(String url) async{
+  if (await canLaunchUrl(Uri.parse(url)) ){
+    await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalApplication,
+        webViewConfiguration: const WebViewConfiguration(
+          enableJavaScript: true,
+        )
+    );
   }
 }
 

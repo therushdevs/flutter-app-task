@@ -79,38 +79,74 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           StreamBuilder(
             stream: streamController.stream,
               builder: (BuildContext context, AsyncSnapshot snapshot){
               if (snapshot.hasData){
-                return Center(
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Text('Hello There, ${snapshot.data['greet']}!',
-                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
-                          Text('Date ${snapshot.data['date']}',
-                            style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-                          Text('Time ${snapshot.data['time']}',
-                            style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-                        ],
+                var arr = snapshot.data['time'].toString().split(':');
+                String formattedTime = '${arr[0]}:${arr[1]}:${arr[2].substring(0,2)}';
+                var dateFormat = List.from(snapshot.data['date'].toString().split('-').reversed);
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 30,top: 20),
+                        child: Text('${snapshot.data['greet']} friend!',
+                          style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
                       ),
-                    ),
+                      Center(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          decoration: const BoxDecoration(
+                              color: Colors.black,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 450,
+                                child:  FadeInImage(
+                                  image: NetworkImage("https://media.giphy.com/media/j0qlQDHk2HTVuwImpo/giphy.gif"),
+                                  placeholder: AssetImage(
+                                      "assets/images/images.png"),
+                                  imageErrorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Image.asset(
+                                        'assets/images/images.png',
+                                        fit: BoxFit.fitWidth);
+                                  },
+                                  fit: BoxFit.fitWidth,
+                                ),
+
+                              ),
+                              Text('${dateFormat.join('/')} | ${formattedTime}',
+                                style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 );
               }else if (snapshot.hasError){
                 return const Center(child: Text('Error'));
               }else{
-                  return Center(child: CircularProgressIndicator(),
+                  return SizedBox(
+                    height: 600,
+                    width: 100,
+                    child: Center(child: CircularProgressIndicator(),
+                    ),
                   );
                 }
               },
           ),
+
           StreamBuilder(
             stream: Connectivity().onConnectivityChanged,
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -118,14 +154,32 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 var isConnected = snapshot.data.toString();
                 // print(isConnected);
                 if (isConnected == 'ConnectivityResult.none'){
-                  return const Text(
-                    'No internet connection',
-                    style: TextStyle(color: Colors.red,fontSize: 24, fontWeight: FontWeight.bold),
+                  return  Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                      ),
+                      child: const Center(
+                        child: Text(
+                            'No Internet Connection',
+                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)
+                        ),
+                      )
                   );
                 }else{
-                  return  Text(
-                    'Internet connected with ${isConnected.toString().split('.')[1]}',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)
+                  return  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    decoration: const BoxDecoration(
+                        color: Colors.green,
+                    ),
+                    child: Center(
+                      child: Text(
+                          'Internet connected with ${isConnected.toString().split('.')[1]}',
+                          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)
+                      ),
+                    )
                   );
                 }
               }else if (snapshot.hasError){

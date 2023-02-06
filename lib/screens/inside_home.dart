@@ -11,7 +11,13 @@ class ApiCalledPage extends StatefulWidget {
 }
 
 class _ApiCalledPageState extends State<ApiCalledPage> {
+  TextEditingController search = TextEditingController();
 
+  @override
+  initState(){
+    super.initState();
+
+  }
   textEdited(String title, String text, var color, double size){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
@@ -46,33 +52,28 @@ class _ApiCalledPageState extends State<ApiCalledPage> {
             ),
           ),
         ),
-        body: FutureBuilder(builder: (BuildContext context, AsyncSnapshot snapshot){
+        body: FutureBuilder(
+          future: homeApiCall(),
+          builder: (BuildContext context, AsyncSnapshot snapshot){
           if (snapshot.hasData){
             var entries = snapshot.data.entries;
             return SizedBox(
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 itemCount: entries.length,
                 itemBuilder: (context, index){
                   return GestureDetector(
                     onTap: ()async{
                       var url = entries[index].link;
-                      if (await canLaunchUrl(Uri.parse(url)) ){
-                        await launchUrl(
-                            Uri.parse(url),
-                            mode: LaunchMode.externalApplication,
-                            webViewConfiguration: const WebViewConfiguration(
-                              enableJavaScript: true,
-                            )
-                        );
-                      }
+                      openWebView(url);
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width/2,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 1),
                         child: Card(
-                          color: Colors.pink.shade100,
+                          color: Colors.pink.shade50,
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Column(
@@ -125,7 +126,7 @@ class _ApiCalledPageState extends State<ApiCalledPage> {
             ),);
           }
         },
-          future: homeApiCall(),
+
         ),
       ),
     );
