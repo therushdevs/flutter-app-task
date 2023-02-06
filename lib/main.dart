@@ -1,18 +1,11 @@
  import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:raftlabs_assignment/navigation.dart';
-import 'package:raftlabs_assignment/providers/state_provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  runApp(
-      MultiProvider(providers: [
-        ChangeNotifierProvider(create: (context) => StateProvider()),
-      ],
-          child: MyApp())
-  );
+  runApp(MyApp());
 }
 
 class MyHttpOverrides extends HttpOverrides{
