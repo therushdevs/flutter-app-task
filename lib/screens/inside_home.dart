@@ -11,7 +11,6 @@ class ApiCalledPage extends StatefulWidget {
 }
 
 class _ApiCalledPageState extends State<ApiCalledPage> {
-  TextEditingController search = TextEditingController();
 
   textEdited(String title, String text, var color, double size){
     return Padding(

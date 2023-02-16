@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+  const   WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -123,7 +123,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                     width: MediaQuery.of(context).size.width,
                                     height:  MediaQuery.of(context).size.width/1.4,
                                     child:  FadeInImage(
-                                      image: NetworkImage("https://media.giphy.com/media/j0qlQDHk2HTVuwImpo/giphy.gif"),
+                                        image: NetworkImage("https://media.giphy.com/media/j0qlQDHk2HTVuwImpo/giphy.gif"),
                                       placeholder: AssetImage(
                                           "assets/images/images.png"),
                                       imageErrorBuilder:
